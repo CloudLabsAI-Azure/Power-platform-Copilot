@@ -2,193 +2,245 @@
 
 ## Lab scenario
 
-In this exercise, you'll build a basic Power Automate flow using Microsoft Copilot Studio. You'll begin by launching Copilot Studio and selecting the option to create a new flow. Following Copilot's guidance, you'll set up a simple workflow by defining a trigger (such as receiving an email or a new item in a list) and configuring actions (like sending a notification or updating a record). After configuring the flow, you’ll test it to ensure it performs the desired tasks correctly. This lab will demonstrate how to use Copilot Studio to streamline the creation and deployment of automated workflows.
+In this exercise, you'll build an agent in Microsoft Copilot Studio that tells users the current temperature for any region they ask about. You'll create an agent and a topic that asks the user for a region, build an agent flow that looks up the current weather with the MSN Weather connector, and then call that flow from the topic. Finally, you'll add a condition that suggests a cold drink when it's warm, and test the agent. This lab shows how agents in Copilot Studio can use agent flows to bring real-time data from external services into a conversation.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 
-- Task 01 : Create a new topic.
-- Task 02 : Create your Power Automate flow.
-- Task 03 : Connect a Power Automate flow with Microsoft Copilot Studio.
+- Task 1: Create an agent and a topic
+- Task 2: Create an agent flow
+- Task 3: Call the agent flow from the topic and test it
 
+### Task 1: Create an agent and a topic
 
-### Task 01: Create a new topic
+In this task, you'll create an agent in the Copilot environment, add a topic with trigger phrases, and ask the user which region they want the weather for.
 
-In this task, you'll create a new topic in Power Automate to help organize and manage your flows. You’ll navigate to the Topics section, set up a descriptive name for the topic, and categorize relevant flows under it, enhancing workflow management and organization.
-
-1. Open a new tab, copy and paste the following link to open **Microsoft Copilot Studio**. On the **Welcome to Microsoft Copilot Studio** page, select **United States** under **Choose your country/region**, and then click **Start free trial**.
+1. Open a new browser tab and navigate to Microsoft Copilot Studio by copying and pasting the following link:
 
    ```
-   https://copilotstudio.microsoft.com/
+   https://copilotstudio.microsoft.com
    ```
 
-1. Select the **Copilot** Environment which you created in the previous lab.
+   > **Note:** If you're asked to sign in, use the following credentials. If a **Pick an account** page appears, select your lab account.
+   >
+   > - **Email/Username:** <inject key="AzureAdUserEmail" enableCopy="true"/>
+   > - **Temporary Access Pass:** <inject key="AzureAdUserPassword" enableCopy="true"/>
 
-   ![screenshot of the prompt ](../Media/copilot-env.png)
+   > **Note:** If the **Find your environments here** tip appears, select **Got it**.
 
-1. To create a new agent click on **Create an agent** then click on **Skip to Configure**.
+1. Copilot Studio opens in the default environment. In the lower-left corner, select the environment name **(1)**, expand **All environments**, and then select **Copilot (2)**, the environment that you created in Module 1.
 
-   ![screenshot of the prompt ](../Media/img-01-52.png)
+   ![Screenshot of the Switch environment menu with the environment button and the Copilot environment highlighted](../Media/L3T1S1.png)
 
-1. On the **Agent** page, select **Edit**, and enter the name as **Check Weather (1)** and then select **Save (2)**.
-   
-   ![screenshot of the prompt ](../Media/img-01-53.png)
+1. On the Home page, select **Other ways to build**.
 
-1. On the **Check Weather** page, select **Settings**.
+   ![Screenshot of the Copilot Studio Home page with Other ways to build highlighted](../Media/L3T1S2.png)
 
-   ![screenshot of the prompt ](../Media/img-01-69.png)
+1. Under **Build with standard orchestration**, select **Agent (Standard)**.
 
-1. On the **Generative AI (1)**, under the **Orchestration** select **No - Use classic orchestration, limiting responses to the content and behavior defined in your agent's topics. (2)** and close the **Settings** page.   
+   ![Screenshot of the Other ways to build page with the Agent Standard option highlighted](../Media/L3T1S3.png)
 
-   ![screenshot of the prompt ](../Media/img-01-70.png)
-	
-1. Select the **Topics (1)**. Click on **+ Add a topic (2)** and then choose an option **From blank (3)**. 
+   > **Note:** The **Agent** card on the Home page creates an agent that uses skills and tools instead of topics. This lab uses topics, so you create a standard agent.
 
-   ![screenshot of the prompt ](../Media/img-01-54.png)
+1. In the **Name your agent** dialog, enter **Check Weather (1)**, and then select **Create (2)**. It takes about a minute to set up the agent.
 
-1. Go to **Details (1)** options to Enter **Check Weather (2)** as the name of your topic. Click on **Save (3)**.
+   ![Screenshot of the Name your agent dialog with the name and the Create button highlighted](../Media/L3T1S4.png)
 
-   ![screenshot of the prompt ](../Media/img-01-55.png)
+   > **Note:** If the message **This feature isn't available until your agent has finished setting up** appears, wait until **Your agent has been provisioned** appears.
 
-1. Click on **Edit (1)** within *Phrases* to open the pane on the right side of the screen, where you can enter simple trigger phrases such as **What is the weather (2)**. After adding prompts like **What is the temperature today**, **Will it rain today**, **Is it snowing** and **How hot is it**, click **+ (3)** after each entry until you have at least five trigger phrases.
+1. On the agent's page, select **+7 (1)**, and then select **Topics (2)**.
 
-   ![screenshot of the prompt ](../Media/img-01-71.png)
+   ![Screenshot of the agent page with the more tabs menu and Topics highlighted](../Media/L3T1S5.png)
 
-   ![screenshot of the prompt ](../Media/img-01-72.png)
+   > **Note:** If the **Test your agent** pane is open, you can close it to see more of the page.
 
-1. Now **Add a node (1)** and select the **Ask a question (2)** node.
+1. Select **+ Add a topic**, and then select **From blank**.
 
-   ![screenshot of the prompt ](../Media/img-01-73.png)
+   ![Screenshot of the Topics page with Add a topic and From blank highlighted](../Media/L3T1S6.png)
 
-1. On the **Ask a question** node, under **Identify**, select **User’s entire response (1)**. Then, select **Save user response as (2)** and update the **Variable name** to **Region (3)**.
+1. In the topic toolbar, select **More**, and then select **Details**.
 
-   ![screenshot of the prompt ](../Media/img-01-74.png)
+   ![Screenshot of the topic toolbar with More and Details highlighted](../Media/L3T1S7.png)
 
-1. Then add text such as:
-`Of course, I can share the weather with you! Can you tell me the name of the region where you want to know the weather?`
+1. In the **Topic details** pane, enter **Check Weather** as the **Name**, and then close the pane.
 
-   ![screenshot of the prompt ](../Media/img-01-75.png)
+   ![Screenshot of the Topic details pane with the Name highlighted](../Media/L3T1S8.png)
 
-1. Within the top right corner of the screen, select the **Save** button to ensure that your work is saved.
+1. In the **Trigger** node, under **User says a phrase**, select **Edit (1)**. In the **Add phrases** box **(2)**, enter the following phrases, pressing **Shift+Enter** after each one, and then select the **Add** icon next to the box.
 
-## Task 02: Create your Power Automate flow.
+   ```text
+   What is the weather
+   What is the temperature today
+   Will it rain today
+   Is it snowing
+   How hot is it
+   ```
 
-In this task, you'll create a Power Automate flow to automate a specific process. You'll start by defining a trigger to initiate the flow, then set up actions to execute tasks based on the trigger. The goal is to streamline and automate repetitive processes, improving efficiency and productivity. 
+   ![Screenshot of the Phrases pane with Edit and the five phrases highlighted](../Media/L3T1S9.png)
 
-1. Select the **Add node** button below the question node to add a new node to the topic. Select **Add an tool (1) > New Agent flow (2)**. The flow opens in a new browser window.
+1. Select an empty area of the canvas to close the pane. The **Trigger** node lists the five phrases.
 
-   ![screenshot of the prompt ](../Media/img-01-76.png)
+   ![Screenshot of the Trigger node with the five phrases highlighted](../Media/L3T1S10.png)
 
-1. Click on the first node **When an agent calls the flow**, a new flow window will open, select the **Add an input** within the first scaffolded action. Then, select **Text**.
+1. Below the **Trigger** node, select **Add node (+) (1)**, and then select **Ask a question (2)**.
 
-   ![screenshot of the prompt ](../Media/img-01-77.png)
-       
-   ![screenshot of the prompt ](../Media/img-01-78.png)
+   ![Screenshot of the Add node menu with Ask a question highlighted](../Media/L3T1S11.png)
 
-1. Within the first column, enter `Region` leaving the second column empty.
+   > **Hint:** If the menu is cut off at the bottom of the window, scroll down while the menu is open.
 
-   ![screenshot of the prompt ](../Media/img-01-79.png)
+1. In the **Question** node, enter the following text in the message box **(1)**. Then, under **Identify**, select **Multiple choice options**, and in the list, select **User's entire response (2)**.
 
-1. Then, select the **Insert a new action** button to add an action.
+   ```
+   Of course, I can share the weather with you! Can you tell me the name of the region where you want to know the weather?
+   ```
 
-   ![screenshot of the prompt ](../Media/img-01-80.png)
+   ![Screenshot of the Question node and the Choose information to identify list with User's entire response highlighted](../Media/L3T1S12.png)
 
-1. Enter `weather` in the search bar and then select **Get current weather** under the **MSN Weather**.
-    
-   ![screenshot of the prompt ](../Media/img-01-81.png)
+1. Under **Save user response as**, select the variable name **Var1 (1)**. In the **Variable properties** pane, change **Variable name** to **Region (2)**, and then close the pane.
 
-1. Under the **Get current weather** node click on the **Create new** button.
+   ![Screenshot of the Variable properties pane with the variable name Region highlighted](../Media/L3T1S13.png)
 
-   ![screenshot of the prompt ](../Media/img-01-82.png)
+1. Select **Save** in the upper-right corner. The message **Topic Saved!** appears.
 
-1. A new node appears, where you can enter the **Location**, use **Dynamic content (1)** menu select **Region (2)** and keep units as **Imperial**.
+   ![Screenshot of the topic with the Save button highlighted](../Media/L3T1S14.png)
 
-   ![screenshot of the prompt ](../Media/img-01-83.png)
+### Task 2: Create an agent flow
 
-   ![screenshot of the prompt ](../Media/img-01-84.png)
+In this task, you'll create an agent flow that takes a region from the agent, gets the current weather from MSN Weather, and returns the temperature.
 
-1. Select the **Respond to Copliot** node at the end of the flow, then select **Add an output > Number**.
+1. Below the **Question** node, select **Add node (+)**, point to **Add a tool (1)**, and then on the **Basic tools** tab, select **New Agent flow (2)**.
 
-   ![screenshot of the prompt ](../Media/img-01-85.png)
+   ![Screenshot of the Add a tool pane with Add a tool and New Agent flow highlighted](../Media/L3T2S1.png)
 
-1. Place your cursor in the **Enter a value to respond (1)** text box select **Insert dynamic content (2)** search for **Temperature (3)** and select **Temperature (4)** in the Title field.
+   > **Note:** The agent flow designer opens in the same browser tab.
 
-   ![screenshot of the prompt ](../Media/img-01-86.png)
+1. The designer shows a **When an agent calls the flow** trigger and a **Respond to the agent** action. Select **When an agent calls the flow**.
 
-1. The flow is almost complete, select the template title and rename it to `Get Temperature` **(1)**.
+   ![Screenshot of the agent flow designer with the When an agent calls the flow trigger highlighted](../Media/L3T2S2.png)
 
-1. Select **Save draft (2)** on the flow in Power Automate to ensure that it saves. Wait a moment until the green banner appears, indicating success then Select **Publish (3)**.
+1. Select **Add an input**, and then select **Text**.
 
-   ![screenshot of the prompt ](../Media/img-01-87.png)
+   ![Screenshot of the Choose the type of user input options with Text highlighted](../Media/L3T2S3.png)
 
-1. On the **Your agent flow published successfully** pop-up select **Go back to agent**
+1. Replace the input name **Text** with **Region**, and leave the second box as it is. Then, select the **Insert a new action (+)** icon between the two nodes.
 
-   ![screenshot of the prompt ](../Media/img-01-88.png)
+   ![Screenshot of the trigger with the Region input and the Insert a new action icon highlighted](../Media/L3T2S4.png)
 
-## Task 03 : Connect a Power Automate flow with Microsoft Copilot Studio.
+   > **Note:** If the **Run an agent** tip appears, close it.
 
-In this task, you'll connect a Power Automate flow with Microsoft Copilot Studio. You'll start by integrating your flow into Copilot Studio, allowing Copilot to assist in configuring and enhancing the flow. This connection enables streamlined automation and leverages Copilot’s capabilities to optimize and refine the flow’s functionality.
+1. In the **Add an action** pane, search for **weather (1)**, and then under **MSN Weather**, select **Get current weather (2)**.
 
-1. In this task, you will connect a Power Automate flow with Microsoft Copilot Studio.
+   ![Screenshot of the Add an action pane with the search box and Get current weather highlighted](../Media/L3T2S5.png)
 
-1. In the **Check Weather** agent, a new action will be automatically created.
+1. In the **Get current weather** action, select **Create new** to create a connection for MSN Weather.
 
-   ![screenshot of the prompt ](../Media/img-01-89.png)
+   ![Screenshot of the Get current weather action with Create new highlighted](../Media/L3T2S6.png)
 
-   >**Note**: If the flow does not show up, save the Check Weather topic and refresh the page.
+1. Select the **Location** box, and then select the **Insert data from previous step** (lightning) icon **(1)**. Under **When an agent calls the flow**, select **Region (2)**. Leave **Units** set to **Imperial**.
 
-1. Under the **Power Automate inputs** select the **Ellipses** of **Enter or select a value (1)** and then select the **Region (2)** variable that you created in previous steps of this lab. 
+   ![Screenshot of the dynamic content list with the lightning icon and the Region input highlighted](../Media/L3T2S7.png)
 
-   ![screenshot of the prompt ](../Media/img-01-90.png)
+   > **Hint:** You can also type **/** in the **Location** box and select **Insert dynamic content**.
 
-1. **Add a Condition node** so that you can check if the **Temperature (1)** variable is greater than **75 (2)**.
+1. The **Get current weather** action should resemble the following image.
 
-   ![screenshot of the prompt ](../Media/img-01-92.png)
+   ![Screenshot of the Get current weather action with Location set to Region and Units set to Imperial](../Media/L3T2S8.png)
 
-1. Under the **Conditions** node, add a new node and select **Send a message** for the true branch, if the Temperature is greater than 75, add the following text within the Message node: `For {Topic.Region} the temperature is {Topic.Temperature} and that is getting warm! Consider cooling off with one of our cold brew coffees.`
+1. Select the **Respond to the agent** action, select **Add an output**, and then select **Number**.
 
-   >**Note**: The braces { } are variables to display dynamic data. To enter variables into the node, use the {X} button on the Message node and then select a variable from the list.
+   ![Screenshot of the Choose the type of output options with Number highlighted](../Media/L3T2S9.png)
 
-      ![screenshot of the prompt ](../Media/img-01-93.png)
+1. Enter **Temperature** as the output name. Select the **Enter a value to respond with** box, type **/**, and then select **Insert dynamic content**. Search for **Temperature**, and then under **Get current weather**, select **Temperature**.
 
-1. For the **All other conditions** node, add a new node and select the **Send a message** within the node: **The temperature for `{Topic.Region}` is `{Topic.Temperature}`. Where the braces { } are variables to display dynamic data.**
+   ![Screenshot of the dynamic content list with Temperature under Get current weather highlighted](../Media/L3T2S10.png)
 
-   ![screenshot of the prompt ](../Media/img-01-94.png)
+1. The output should resemble the following image **(1)**. Select **Save draft (2)**.
 
-   >**Note**: The braces { } are variables to display dynamic data. To enter variables into the node, use the {X} button on the Message node and then select a variable from the list.
+   ![Screenshot of the Respond to the agent action with the Temperature output and Save draft highlighted](../Media/L3T2S11.png)
 
-1. The **Condition** node should look like the screenshot below.
+1. When the message **We saved your draft flow** appears, select the **Overview** tab.
 
-   ![screenshot of the prompt ](../Media/img-01-95.png)
+   ![Screenshot of the saved flow with the Overview tab highlighted](../Media/L3T2S12.png)
 
-1. To end the conversation, select the **Add node** button below the condition. Select **Topic management (1)** and then choose **End conversation (1)**.
+1. In the **Details** section, select **Edit**. Change **Flow name** to **Get Temperature**, and then select **Save**.
 
-    ![screenshot of the prompt ](../Media/img-01-96.png)
+   ![Screenshot of the Details pane with the flow name and Save highlighted](../Media/L3T2S13.png)
 
-1. **Save** your topic using the button found in the top right corner of the screen and then Click on **Test** and test it out 
+   > **Note:** The message **There's a potential problem with this flow** appears because the flow hasn't been published yet. You publish it in the next step.
 
-   ![screenshot of the prompt ](../Media/img-01-97.png)
+1. Select the **Designer** tab, and then select **Publish**. When the **Your agent flow published successfully!** dialog appears, select **Go back to agent**.
 
-   >**Note:** If you get a response **Let's get you connected first, and then I can find that info for you. ​`Open connection manager`​ to verify your credentials. Once the connection is ready, retry your request.**
+   ![Screenshot of the published flow dialog with Publish and Go back to agent highlighted](../Media/L3T2S14.png)
 
-   > Select **Open connection manager**, it will navigate you to the new tab.
+### Task 3: Call the agent flow from the topic and test it
 
-   > On the **Manage your connection** page, select **Connect** button.
+In this task, you'll add the agent flow to the Check Weather topic, add a condition that changes the reply when it's warm, and test the agent.
 
-   > On the **Create or pick connections** page, select **MSN Weather** and select **Submit**.
+1. **Go back to agent** opens the agent's **Tools** page. Select **+7**, select **Topics**, and then select the **Check Weather** topic.
 
-   >Now, navigate back to the **Topics** page, and select **Retry**.
-	
-1. You successfully created a Power Automate flow and a new topic in Microsoft Copilot Studio that used the flow to provide real-time data from an external service to the user.
+   > **Note:** The flow isn't added to the topic automatically, so you add it in the next step.
 
-## Summary 
+1. Below the **Question** node, select **Add node (+)**, point to **Add a tool (1)**, and then on the **Basic tools** tab, select **Get Temperature (2)**.
+
+   ![Screenshot of the Add a tool pane with Add a tool and the Get Temperature flow highlighted](../Media/L3T3S1.png)
+
+1. In the **Action** node, under **Power Automate inputs**, select the **Select variable** (...) icon **(1)** next to **Enter or select a value**. Notice that the flow's output is already saved in a **Temperature (2)** variable.
+
+   ![Screenshot of the Action node with the Select variable icon and the Temperature output highlighted](../Media/L3T3S2.png)
+
+1. In the **Select a variable** pane, on the **Custom** tab, select **Region**.
+
+   ![Screenshot of the Select a variable pane with the Region variable highlighted](../Media/L3T3S3.png)
+
+1. Select **Save**. The **Action** node now passes **Region (1)** to the flow and saves the result in **Temperature (2)**.
+
+   ![Screenshot of the Action node with the Region input and the Temperature output highlighted](../Media/L3T3S4.png)
+
+1. Below the **Action** node, select **Add node (+)**, and then select **Add a condition**. In the **Condition** branch, select **Temperature** as the variable, select **is greater than**, and enter **75**.
+
+   ![Screenshot of the Condition branch with Temperature is greater than 75 highlighted](../Media/L3T3S5.png)
+
+1. Below the **Condition** branch, select **Add node (+)**, and then select **Send a message**. Enter the following message. To insert a variable, select the **Insert variable** ({x}) icon, search for the variable name, and then double-click the variable.
+
+   - **For** {Region} **the temperature is** {Temperature} **and that is getting warm! Consider cooling off with one of our cold brew coffees.**
+
+     ![Screenshot of the Message node with the warm weather message highlighted](../Media/L3T3S6.png)
+
+   > **Note:** The braces show where to insert a variable. Type a space before and after each variable, otherwise the words run together in the reply.
+
+1. Below **All other conditions**, select **Add node (+)**, select **Send a message**, and enter the following message in the same way:
+
+   - **The temperature for** {Region} **is** {Temperature}**.**
+
+     ![Screenshot of the All other conditions Message node with the message highlighted](../Media/L3T3S7.png)
+
+1. The two branches should resemble the following image.
+
+   ![Screenshot of the Condition branch and All other conditions branch with their messages highlighted](../Media/L3T3S8.png)
+
+1. Below the branches, select **Add node (+)**, point to **Topic management (1)**, and then select **End conversation (2)**.
+
+   ![Screenshot of the Topic management menu with End conversation highlighted](../Media/L3T3S9.png)
+
+1. Select **Save**. The topic ends with an **End conversation** node.
+
+   ![Screenshot of the topic with the End conversation node highlighted](../Media/L3T3S10.png)
+
+1. Select **Test (1)** in the upper-right corner. In the **Test your agent** pane, enter **What is the weather**, and when the agent asks for the region, enter **Seattle**. The agent replies with the current temperature **(2)**.
+
+   ![Screenshot of the Test your agent pane with the Test button and the temperature reply highlighted](../Media/L3T3S11.png)
+
+   > **Note:** If the agent replies **Let's get you connected first**, select **Open connection manager**, select **Connect** next to **MSN Weather**, select **Submit**, and then return to the test pane and select **Retry**.
+
+You have created an agent and a topic in Microsoft Copilot Studio that uses an agent flow to provide real-time data from an external service to the user.
+
+## Summary
 
 In this lab, you have accomplished the following:
 
-- You have created a new topic to organize and categorize your workflows effectively.
-- You have built a Power Automate flow to automate a specific process.
-- You have connected the flow with Microsoft Copilot Studio to leverage its capabilities for improved configuration and optimization.
+- Created a standard agent in Microsoft Copilot Studio and a topic that asks the user for a region.
+- Built and published an agent flow that gets the current temperature from MSN Weather.
+- Called the agent flow from the topic, added a condition to tailor the reply, and tested the agent.
 
-### Congratulations! you have successfully completed this lab, please click on **Next** to continue with the next lab.
-  
+### Congratulations! You have successfully completed this lab. Click **Next** to continue to the next lab.

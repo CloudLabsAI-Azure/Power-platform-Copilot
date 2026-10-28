@@ -48,7 +48,7 @@ A full live walkthrough of Lab 1 on a CloudLabs instance (ODL lab user, Temporar
 2. **masterdoc.json** loads the guides from `CloudlabsAI-Git/Power-platform-Copilot/main`. These changes reach learners only after this branch is merged into that repository.
 3. **ValidationCoverage**: Lab 1 has no validation steps. Adding them needs validation scripts, which were out of scope.
 4. **Getting-Started-01.md** has a broken image (not in masterdoc.json, so not shown to learners). `Instructions/Media/response-summary.png` is an orphan from before this change.
-5. LAB-03 to LAB-05 were not tested in this pass (LAB-02 is covered below).
+5. LAB-04 and LAB-05 were not tested in this pass (LAB-02 and LAB-03 are covered below).
 6. The skill's "fresh-agent freshness spot-check" was replaced by the end-to-end live walkthrough, which exercised every step in the current product.
 
 ---
@@ -99,3 +99,51 @@ Scope: `Instructions/Labs/LAB-02.md` and its screenshots only. Tested live on th
 2. **Status default in the Lab 1 app form**: on a new record, the Status dropdown shows the raw value **151650000** until an option is selected. Cosmetic; it comes from the Copilot-generated form.
 3. **Orphan images**: `Instructions/Media/02/` still holds about 30 images that no page references (they predate this change). Safe to delete in a separate cleanup.
 4. **ValidationCoverage**: no validation steps in Lab 2 (needs scripts, out of scope).
+
+---
+
+# Lab 3 refresh
+
+Scope: `Instructions/Labs/LAB-03.md` and its screenshots only. Tested live on the same CloudLabs instance in the Copilot environment: agent created, topic built, agent flow published, flow called from the topic, and the agent answered "The temperature for Seattle is 47." in the test pane. Screenshots were captured with the mouse pointer moved out of frame; the three captures that needed the pointer on a hover menu have it blurred.
+
+## Content changes in LAB-03.md
+
+| Area | Old guide | Current product (fixed) |
+|---|---|---|
+| Copilot Studio entry | "Welcome to Microsoft Copilot Studio" page, choose country, **Start free trial** | No trial page; the lab user's license already covers it. Note for the **Find your environments here** tip |
+| Environment | "Select the Copilot environment" (no location given) | Environment switcher is now in the lower-left corner; **All environments**, then **Copilot** |
+| Creating the agent | **Create an agent**, **Skip to Configure**, then Edit the name | The Home **Agent** card now builds a skills/tools agent with no topics. The lab now uses **Other ways to build**, **Agent (Standard)**, and names the agent in the **Name your agent** dialog |
+| Orchestration | Settings, Generative AI, choose classic orchestration | Not needed: the standard agent already uses topics. Step removed |
+| Topics page | **Topics** tab | Tabs collapse into **+7**; step now says **+7**, **Topics** |
+| Topic name | **Details** option | **More**, **Details**, Name |
+| Trigger phrases | Add one at a time with **+** | **Edit** under **User says a phrase**; phrases entered together with Shift+Enter, then the **Add** icon |
+| Question node | Identify **User's entire response**, rename variable | Same, plus where to click: Identify list, then the **Var1** name opens **Variable properties** |
+| New agent flow | **Add an tool**, **New Agent flow**; "opens in a new browser window" | **Add a tool** is a submenu; the flow designer opens in the same tab |
+| Flow trigger and output | "Respond to Copilot" node, **Add an output > Number**, Title field | Node is **Respond to the agent**; the Number output now needs a name (**Temperature**); the value is picked from **Insert dynamic content** |
+| Renaming the flow | Rename the "template title" in the designer | The flow saves as **Untitled**; rename on the **Overview** tab, **Details**, **Edit** |
+| Publish | Save draft, Publish, **Go back to agent** | Same, but **Go back to agent** opens the **Tools** page and the flow is **not** added to the topic automatically. New steps open the topic and add the flow from **Add a tool** |
+| Flow outputs | Not mentioned | The topic action already maps the output to a **Temperature** variable, so the condition can use it directly |
+| Inserting variables in messages | "{X} button, select a variable" | Single-clicking a variable in the picker doesn't insert it; search and double-click. Note to type a space around each variable (the editor doesn't, and the test reply read "Seattleis") |
+| Connection prompt | Long note about Open connection manager | Kept as a short fallback note; it didn't appear in testing |
+| Style | En dashes, `Task 01 :` headings, "Copliot" typo, "screenshot of the prompt" alt text, numbering mismatches (two **(1)** markers) | `### Task N:` headings, self-closing inject tags, descriptive alt text, `**(N)**` markers matched to badges |
+
+## Screenshots
+
+- 39 new live screenshots `L3T{task}S{step}.png` in `Instructions/Media/`, annotated with `Annotate-Screenshot.ps1 -Strict` (tenant name blurred; Grammarly icons blurred).
+- The repo already had 13 unreferenced `L3T*.png` files from an earlier revision. Six of the names are reused by the new set. The seven `-1` and `-2` variants were removed.
+- 33 old Lab 3 images removed (`img-01-52` to `img-01-97`, `copilot-env.png`, and others); none was referenced by any other page.
+
+## Lint, LAB-03.md only
+
+| | Before | After |
+|---|---|---|
+| Blockers | 0 | 0 |
+| Warnings | 1 (ValidationCoverage) | 1 (ValidationCoverage) |
+| Hygiene | 4 | 0 |
+
+## Found but not fixed (Lab 3)
+
+1. **Copilot Studio is changing fast**: the Home page now defaults to a new agent type without topics. If Microsoft removes **Other ways to build > Agent (Standard)**, this lab needs a redesign around tools instead of topics.
+2. **Window height**: at the lab VM's 621 px viewport, the topic canvas's **Add node** menu is cut off; learners must scroll while it's open (Hint added).
+3. **Orphan folder**: `Instructions/Media/3.1/` (16 images) is not referenced by any page.
+4. **ValidationCoverage**: no validation steps (needs scripts, out of scope).
