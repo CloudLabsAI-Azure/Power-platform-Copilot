@@ -48,7 +48,7 @@ A full live walkthrough of Lab 1 on a CloudLabs instance (ODL lab user, Temporar
 2. **masterdoc.json** loads the guides from `CloudlabsAI-Git/Power-platform-Copilot/main`. These changes reach learners only after this branch is merged into that repository.
 3. **ValidationCoverage**: Lab 1 has no validation steps. Adding them needs validation scripts, which were out of scope.
 4. **Getting-Started-01.md** has a broken image (not in masterdoc.json, so not shown to learners). `Instructions/Media/response-summary.png` is an orphan from before this change.
-5. LAB-04 and LAB-05 were not tested in this pass (LAB-02 and LAB-03 are covered below).
+5. LAB-04 was not tested in this pass (LAB-02, LAB-03 and LAB-05 are covered below).
 6. The skill's "fresh-agent freshness spot-check" was replaced by the end-to-end live walkthrough, which exercised every step in the current product.
 
 ---
@@ -147,3 +147,46 @@ Scope: `Instructions/Labs/LAB-03.md` and its screenshots only. Tested live on th
 2. **Window height**: at the lab VM's 621 px viewport, the topic canvas's **Add node** menu is cut off; learners must scroll while it's open (Hint added).
 3. **Orphan folder**: `Instructions/Media/3.1/` (16 images) is not referenced by any page.
 4. **ValidationCoverage**: no validation steps (needs scripts, out of scope).
+
+---
+
+# Lab 5 refresh
+
+Scope: `Instructions/Labs/LAB-05.md` and its screenshots only. Tested live on the same CloudLabs instance in the Copilot environment: solution created, automated flow built and saved, a test email sent, run **Succeeded**, co-owner added, copy sent, and the share notification arrived (flagged by the flow).
+
+## Content changes in LAB-05.md
+
+| Area | Old guide | Current product (fixed) |
+|---|---|---|
+| Flow action | **Send me a mobile notification** | **Breaking:** the action now fails with "The Power Automate mobile app was retired on August 31, 2026, so this action no longer has a destination". Teams **Post a message to myself** also failed (403: the lab user has no Teams license). Replaced with Office 365 Outlook **Flag email (V2)** on the trigger's **Message Id**, which uses the existing Outlook connection and can't loop |
+| Testing | No test; the flow never ran | New steps: send yourself an email in Outlook and confirm **Succeeded** in the run history |
+| Send a copy | Assumed the panel works right away | The panel is disabled with **Flow has been modified since last successful run** until the flow has run once; covered by the new test steps, plus a Note |
+| Environment and navigation | Not mentioned | Step to confirm the **Copilot** environment; Hint for the collapsed icon-only navigation at the lab VM's display scale |
+| New solution | Display name, Publisher, Create | Same, with the publisher name as shown (**Default Publisher for org...**) and the auto-filled **Name** |
+| Designer | "+ New step" | Same (solution flows open in the classic designer); Note to turn off **New designer** if it opens |
+| Add an owner | "On the Microsoft Copilot Studio, select My flows", Share, OK | Copilot Studio reference removed; **Share** is a row icon in **My flows**; new **Before you share** dialog step. The lab tenant has no other lab users, so the owner is the lab account itself (with a Note) |
+| Send a copy | Description only | Full step: description, **Send to** the lab account, **Send**, and the success message; the share email is then shown in Outlook |
+| Summary | Listed "designated a list of users as co-owners" (not a step) | Summary matches the tasks |
+| Style | `Task 01:` headings, "Create A cloud Flow", "screenshot of the prompt" alt text, mixed indentation | `### Task N:` headings, self-closing inject tags, descriptive alt text, `**(N)**` markers matched to badges |
+
+## Screenshots
+
+- 20 new live screenshots `L5T{task}S{step}.png`. In the classic designer the mouse pointer stays visible wherever it is parked, so it is blurred in those captures.
+- 12 old Lab 5 images removed; none was referenced by any other page.
+- `L5T2S3` (Before you share) still lists a **Notifications** connection from the first version of the test flow; a learner's dialog lists only Office 365 Outlook. Recapture on the next pass.
+
+## Lint, LAB-05.md only
+
+| | Before | After |
+|---|---|---|
+| Blockers | 0 | 0 |
+| Warnings | 1 (ValidationCoverage) | 1 (ValidationCoverage) |
+| Hygiene | 1 | 0 |
+
+## Found but not fixed (Lab 5)
+
+1. **Licensing**: the lab user has no Microsoft Teams license, so any Teams action fails. If a future lab version needs Teams, the CloudLabs template must assign it.
+2. **Only one user per tenant**: owner and Send a copy target the lab account itself. To show real sharing, the template would need a second user (`user-creation.json`).
+3. **Orphan folder**: `Instructions/Media/05/` still holds 14 unreferenced images.
+4. **ValidationCoverage**: no validation steps (needs scripts, out of scope).
+5. Test artifacts left in the lab tenant: the Copilot solution, `my child flow`, and test emails in the lab mailbox.
