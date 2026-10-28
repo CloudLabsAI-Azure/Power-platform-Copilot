@@ -48,5 +48,54 @@ A full live walkthrough of Lab 1 on a CloudLabs instance (ODL lab user, Temporar
 2. **masterdoc.json** loads the guides from `CloudlabsAI-Git/Power-platform-Copilot/main`. These changes reach learners only after this branch is merged into that repository.
 3. **ValidationCoverage**: Lab 1 has no validation steps. Adding them needs validation scripts, which were out of scope.
 4. **Getting-Started-01.md** has a broken image (not in masterdoc.json, so not shown to learners). `Instructions/Media/response-summary.png` is an orphan from before this change.
-5. LAB-02 to LAB-05 were not tested in this pass.
+5. LAB-03 to LAB-05 were not tested in this pass (LAB-02 is covered below).
 6. The skill's "fresh-agent freshness spot-check" was replaced by the end-to-end live walkthrough, which exercised every step in the current product.
+
+---
+
+# Lab 2 refresh
+
+Scope: `Instructions/Labs/LAB-02.md` and its screenshots only. Tested live on the same CloudLabs instance, continuing from the Lab 1 environment, app and table. The flow was built, saved, tested, approved in Outlook and confirmed as **Succeeded**, and the row's **Is Confirmed** value changed to True.
+
+## Content changes in LAB-02.md
+
+| Area | Old guide | Current product (fixed) |
+|---|---|---|
+| Environment | "From the top menu, select the Copilot environment" | Power Automate opens in the default environment; explicit step: **Environments**, then **Copilot** under **Build flows** |
+| Starting the flow | Prompt box in the center of the Home page, **Generate** | Home page has cards; select **Create with Copilot**, enter the prompt, select the **Send** arrow |
+| Prompt | Dataverse prompt with an "Approved column (Yes/No)" that the table doesn't have | Prompt names the **RealEstateShowing** table and uses its existing **Is Confirmed** Yes/No column |
+| Connections page | "Review the connected apps..." | **Make sure everything's ready** page with green check marks, then **Create flow** |
+| Designer tips | Not mentioned | Note for the **Expand or collapse all actions** and **Drafts and Versioning** tips |
+| Trigger | Change type Added, table "RealEstateShowings", scope Organization, "remove the Update parameter" | Copilot fills in an invalid table name (**RealEstateShowing**) and scope **4**; steps now clear and reselect **RealEstateShowings**, set **Organization**; the Update parameter no longer exists |
+| Title | Set with a Copilot chat prompt | In testing Copilot added a note to the action instead of setting **Title** (two prompt wordings tried); learners now type the Title, with a Note explaining why |
+| Dynamic content | Lightning icon, **See More**, scroll | Lightning icon (**Insert data from previous step**) with a search box; **See more** no longer needed. Hint that **/** also inserts dynamic content |
+| Details tokens | "Client Address" after **Property:** | **Property Address** after Property (the old text inserted the client's address as the property) |
+| Condition | "Select Outcome, is equal to, enter Approve" | Copilot already sets it; step now verifies, with a Note about the empty second row Copilot adds |
+| Upsert actions | Status = Active / Inactive in **Show all** | Same table-name fix as the trigger; **Is Confirmed** = Yes / No via the **Advanced parameters** list (matches the prompt; Status is now the custom choice column from Lab 1) |
+| Email connection | **Sign in** on Create connection | A **Connection name** is now required before **Sign in**; the second email uses the **Change connection** pane to reuse it |
+| To field | Note: "Settings, Use the dynamic content" | Explicit step: gear icon, **Use dynamic content**, then **Client Email** under the trigger (the list also shows Upsert outputs) |
+| Test | **Manually**, **Publish & Test** | **Manually**, **Test** |
+| Running the app | "Run the app", Status **Pending**, Agent Name, Excel file note | Play from **More commands**; values for every current column; **Client Email** is the lab user so the result email arrives; **Is Confirmed** left empty for the flow to set; removed the Excel/Real Estate Properties note (that file and table don't exist) |
+| Outlook | Sign in with password | Account picker; Note for the **Your privacy matters** first-run message |
+| Verification | Run history | Run history **Succeeded**, plus a new step to confirm **Is Confirmed = True** in the app |
+| Style | En dash headings, legacy paired inject tags, "screenshot of the prompt" alt text, callout variants | `### Task N:` headings, self-closing inject tags with enableCopy, descriptive alt text, `**(N)**` markers matched to badges, canonical callouts |
+
+## Screenshots
+
+- 39 new live screenshots named `L2T{task}S{step}.png` in `Instructions/Media/`, annotated with `Annotate-Screenshot.ps1 -Strict` (tenant name and user domain blurred; Grammarly extension icons blurred where they appeared).
+- 38 old Lab 2 images removed (`img-01-27` to `img-01-68`, `powerautomate-1.png`, `copilot-start-wait-approval-collapsed-1.png` and seven files in `Media/02/`); none was referenced by any other page.
+
+## Lint, LAB-02.md only
+
+| | Before | After |
+|---|---|---|
+| Blockers | 0 | 0 |
+| Warnings | 7 | 1 (ValidationCoverage) |
+| Hygiene | 12 | 0 |
+
+## Found but not fixed (Lab 2)
+
+1. **Copilot parameter edits**: the designer Copilot didn't set the approval Title from a prompt; the guide works around it. Recheck in a later refresh in case Copilot behavior improves.
+2. **Status default in the Lab 1 app form**: on a new record, the Status dropdown shows the raw value **151650000** until an option is selected. Cosmetic; it comes from the Copilot-generated form.
+3. **Orphan images**: `Instructions/Media/02/` still holds about 30 images that no page references (they predate this change). Safe to delete in a separate cleanup.
+4. **ValidationCoverage**: no validation steps in Lab 2 (needs scripts, out of scope).
