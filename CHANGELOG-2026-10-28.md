@@ -130,7 +130,7 @@ Scope: `Instructions/Labs/LAB-03.md` and its screenshots only. Tested live on th
 ## Screenshots
 
 - 39 new live screenshots `L3T{task}S{step}.png` in `Instructions/Media/`, annotated with `Annotate-Screenshot.ps1 -Strict` (tenant name blurred; Grammarly icons blurred).
-- The repo already had 13 unreferenced `L3T*.png` files from an earlier revision. Six of the names are reused by the new set. The seven `-1` and `-2` variants were removed.
+- The repo already had 17 unreferenced `L3T*.png` files from an earlier revision. The new set reuses 10 of those names; the seven `-1` and `-2` variants were removed.
 - 33 old Lab 3 images removed (`img-01-52` to `img-01-97`, `copilot-env.png`, and others); none was referenced by any other page.
 
 ## Lint, LAB-03.md only
