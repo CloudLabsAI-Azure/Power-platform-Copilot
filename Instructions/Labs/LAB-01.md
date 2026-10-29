@@ -2,246 +2,317 @@
 
 ## Lab Scenario
 
-In this exercise, you'll take on the role of a software developer tasked with creating a user-friendly canvas app using Power Apps Copilot. Your objective is to build an app designed to manage customer information effectively. Start by using Copilot to quickly generate a table with essential columns such as Customer ID, Full Name, Email, and Phone Number. Then, populate the table with sample data and make necessary adjustments, such as modifying column data types. Finally, design the app's interface to display and interact with the data, test its functionality, and publish the app for user access. This lab will showcase how Power Apps Copilot can streamline app development and enhance productivity.
+In this exercise, you'll take on the role of a software developer tasked with creating a user-friendly canvas app using Copilot in Power Apps. Your objective is to build an app that helps a real estate team manage property showings. Start by describing your data to Copilot so that it generates a Dataverse table, then use natural language prompts to add columns, add a status choice column, and add sample rows. Finally, open the generated app, adjust what the gallery and form display, test the app by adding a new showing, and save it. This lab shows how Copilot in Power Apps can streamline app development and improve productivity.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 
-- Task 1 – Create Power Platform environment.
-- Task 2 - Create an app with Copilot.
-- Task 3 - Make edits using Copilot to edit your app.
+- Task 1: Create a Power Platform environment
+- Task 2: Create an app with Copilot
+- Task 3: Edit and test the app
 
+### Task 1: Create a Power Platform environment
 
-### Task 1 – Create Power Platform environment
+In this task, you'll create a new Power Platform environment with a Dataverse data store to support app development. You'll set the essential details and review the environment settings.
 
- In this task, you'll create and configure a new Power Platform environment to support app development and deployment. You'll set up essential details and adjust settings to meet your organizational needs.
- 
 1. Open a new browser tab and navigate to the Power Platform admin center by copying and pasting the following link:
 
    ```
    https://aka.ms/ppac
    ```
 
-2. On **Sign into Microsoft Azure** tab you will see login screen, in that enter following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
+1. On the **Sign in** page, enter the following email/username **(1)**, and then select **Next (2)**.
 
-      ![screenshot of the prompt ](../Media/image7.png)
+   - **Email/Username:** <inject key="AzureAdUserEmail" enableCopy="true"/>
 
-3. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-      ![screenshot of the prompt ](../Media/image8.png) 
+     ![Screenshot of the Microsoft Sign in page with the username field and the Next button highlighted](../Media/L1T1S2.png)
 
-4. In the site navigation, click on **Manage (1)**, click on **Environments (2)**, and then click **+ New (3)** on the toolbar.
+1. On the **Enter Temporary Access Pass** page, enter the following Temporary Access Pass **(1)**, and then select **Sign in (2)**.
 
-   ![screenshot of the prompt ](../Media/img-01-05.png) 
+   - **Temporary Access Pass:** <inject key="AzureAdUserPassword" enableCopy="true"/>
 
-5. Create a new Environment with the following settings:
+     ![Screenshot of the Enter Temporary Access Pass page with the pass field and the Sign in button highlighted](../Media/L1T1S3.png)
 
-   - **Type**: **Sandbox (1)**
-   - **Region**: **United States - Default (2)**
-   - **Name**: **Copilot (3)**
-   - Expand **Change default settings (4)**
-   - **Add a Dataverse data store?**: **Yes (5)**
-   - Keep all other settings unchanged, Click on **Next (6)**
-   
-      ![screenshot of the prompt ](../Media/img-01-06.png)
+   > **Note:** Your lab account signs in with a Temporary Access Pass instead of a password, so no multifactor authentication setup is needed. If you see a **Stay signed in?** prompt, select **No**.
 
-      ![screenshot of the prompt ](../Media/img-01-07.png)  
- 
-6. On the **Add Dataverse** tab, under **Security Group**, click the **+ Select** button. Then, under **Open Access**, choose **None (1)** and click **Done (2)**.
+1. In the left navigation, select **Manage (1)**, select **Environments (2)**, and then select **+ New (3)** on the toolbar.
 
-   ![screenshot of the prompt ](../Media/img-01-08.png)
+   ![Screenshot of the Power Platform admin center with Manage, Environments, and New highlighted](../Media/L1T1S4.png)
 
-   ![screenshot of the prompt ](../Media/img-01-09.png)
+1. In the **New environment** pane, enter the following details:
 
-7. Select **Save (2)**, on the **Add Dataverse** prompt.
+   - **Type:** Leave **Sandbox (1)** selected
+   - **Macro Region Geography:** Select **North America (2)**
+   - **Name:** Enter **Copilot (3)**
 
-   ![screenshot of the prompt ](../Media/img-01-10.png)
- 
-8. In the list of environments, your **Copilot** environment should now show as **Preparing**.
+     ![Screenshot of the New environment pane with Type, Macro Region Geography, and Name highlighted](../Media/L1T1S5.png)
 
-   ![screenshot of the prompt ](../Media/copilot-env-1.png)
+1. Scroll down in the pane, expand **Change default settings (1)**, set **Add a Dataverse data store?** to **Yes (2)**, keep all other settings unchanged, and then select **Next (3)**.
 
-      >**Note**:Your practice environment will take a few minutes to provision. Refresh the **Environments** list if needed.
- 
-9. When your environment shows as **Ready**, select your **Copilot** environment by selecting the ellipses next to the name to expand the drop-down menu and select **Settings**.
- 
-      >**Note**: Browse through the various sections under **Settings** that interest you, but refrain from making any modifications.
+   ![Screenshot of the Change default settings section with the Dataverse toggle set to Yes and Next highlighted](../Media/L1T1S6.png)
 
-## Task–02: Create an app with Copilot.
+   > **Note:** The **Save** button changes to **Next** after you turn on the Dataverse data store.
 
-In this task, you'll use Power Apps Copilot to quickly create a canvas app, including generating and populating tables with data. You'll then design the app interface and test its functionality.
+1. In the **Add Dataverse** pane, keep **English (United States)** as the **Language** and **USD ($)** as the **Currency**. Under **Security group**, select **+ Select**.
 
-1. Open a new browser tab and navigate to [https://make.powerapps.com](https://make.powerapps.com) to access Power Apps.
+   ![Screenshot of the Add Dataverse pane with the Select option under Security group highlighted](../Media/L1T1S7.png)
 
-   >**Note:** Make sure you are in the **Copilot** environment that you created in the previous task.
+1. In the **Edit security group** pane, under **Open access**, select **None (1)**, and then select **Done (2)**.
 
-      ![screenshot of the prompt ](../Media/copilot-(1).png)
+   ![Screenshot of the Edit security group pane with None and Done highlighted](../Media/L1T1S8.png)
 
-1. On the **Power Apps** portal, from the left navigation menu, select **Apps (1)**. Now, inside the Apps pane, select **+ New app (2)** drop-down, and select **Start with data (3)** option.
+1. Back in the **Add Dataverse** pane, confirm that the security group shows **None**, and then select **Save**.
 
-   ![screenshot of the prompt ](../Media/img-01-14.png)
+   ![Screenshot of the Add Dataverse pane with the security group set to None and Save highlighted](../Media/L1T1S9.png)
 
-1. On the **Start with data** page, Enter the following prompt to search for an AI-generated table **build an app to manage real estate showings (1)** , Select the **Send (2)** button.
+   > **Note:** If you see the message **A self-service signup plan is required to successfully complete this request**, the Power Apps license for your lab account is still being applied. Wait a few minutes, and then select **Save** again. If the message persists, contact CloudLabs support.
 
-   ![screenshot of the prompt ](../Media/describe-data-start.png) 
+1. In the list of environments, your **Copilot** environment shows the state **Preparing**.
 
-   >**Note:** Select **Got it** on the pompt.
+   ![Screenshot of the Environments list with the Copilot environment in the Preparing state](../Media/L1T1S10.png)
 
-1. It will generate three tables: **Property**, **Agent**, **Client** and **Showing**. However, we only need a single table named **RealEstateShowings**, which includes all four. To do this, select **Table Options** under the Copilot pane.
+   > **Note:** The environment takes a few minutes to provision. Select **Refresh** on the toolbar to update the list.
 
-   ![screenshot of the prompt ](../Media/img-01-15.png)
+1. When the state of the **Copilot** environment changes to **Ready**, select the **More actions (...) (1)** icon next to the environment name, and then select **Settings (2)**.
 
-1. Under **Table options**, select **One table (1)** and then click **Apply (2)**. This will generate the required table for this lab.
+   ![Screenshot of the Copilot environment more actions menu with Settings highlighted](../Media/L1T1S11-1.png)
 
-   ![screenshot of the prompt ](../Media/table-options(1).png)
+1. The **Settings** page for the **Copilot** environment opens.
 
-   ![screenshot of the prompt ](../Media/img-01-16.png)
+   ![Screenshot of the Settings page for the Copilot environment](../Media/L1T1S11-2.png)
 
-1. Once Copilot AI generates a table based on your prompt, review the tables to see the columns that have been created initially.
+   > **Note:** Browse through the sections under **Settings** that interest you, but don't make any changes.
 
-   ![screenshot of the prompt ](../Media/img-01-15.png)
+### Task 2: Create an app with Copilot
 
-1. In the text box at the bottom of the Copilot pane on the right side of the screen, type the following text: **add a column to track client full name**. Then, click the Send button.
+In this task, you'll use Copilot in Power Apps to describe your data, generate a Dataverse table, refine the table with natural language prompts, and then create a canvas app from it.
 
-   ![screenshot of the prompt ](../Media/img-01-17.png)
+1. Open a new browser tab and navigate to [https://make.powerapps.com](https://make.powerapps.com) to open Power Apps.
 
-   >**Note**: Copilot notifies you that the table is updated, and the new column should show as being added to the tables.
+1. If the **Welcome to Power Apps** dialog appears, keep **United States (1)** as the country or region, and then select **Get started (2)**.
 
-1. If you want to check the data or columns of the table, select the **ellipses (1)** icon on the **Real Estate Showing** table and choose **View data (2)**. From here, you can rename, delete, update, and add the required columns.
+   ![Screenshot of the Welcome to Power Apps dialog with the country field and Get started highlighted](../Media/L1T2S2.png)
 
-   ![screenshot of the prompt ](../Media/img-01-18.png)
-   
-1. Enter the following text: **add a column to track client email**. Then, click the Send button.
+   > **Note:** This dialog appears only the first time you open Power Apps.
 
-   >**Note**:
+1. Power Apps opens in the default environment. In the upper-right corner, select **Environment (1)**, and then in the **Select environment** pane, select **Copilot (2)**.
 
-   > The data that's generated in your table might vary from the data that's shown in the table in the screenshots for this lab.
-   
-   > The Suggestions section in the lower-left corner of the screen provides you with different suggestions on how you can add to and modify your table.
+   ![Screenshot of the Select environment pane with the environment picker and the Copilot environment highlighted](../Media/L1T2S3.png)
 
-      ![screenshot of the prompt ](../Media/img-01-19.png)
+1. From the left navigation menu, select **Apps (1)**. On the toolbar, open the **+ New app (2)** drop-down, and then select **Start with data (3)**.
 
-1. Enter the following text:	**add an option for “Completed” to the Status column**. Select the Send button.
+   ![Screenshot of the Apps page with Apps, New app, and Start with data highlighted](../Media/L1T2S4.png)
 
-   ![screenshot of the prompt ](../Media/img-01-20.png)
+1. On the **Start with data** page, under **Describe the data for your app**, enter the following prompt **(1)**, and then select the **Send (2)** button.
 
-1. Enter the following text in the Copilot pane text box: **add 5 more rows of data in all the three tables**, Click **Send**. This action will insert five new rows of data for each existing column in your table.
+   ```
+   build an app to manage real estate showings
+   ```
 
-    ![screenshot of the prompt ](../Media/power-apps(3).png)
+   ![Screenshot of the Describe the data for your app prompt box with the prompt and the Send button highlighted](../Media/L1T2S5.png)
 
-1. In the text box, in the lower part of the Copilot pane to the right of the screen, enter the following text: **add a column to track Client Address**. Select the **Send** button. 
+1. Copilot generates four related tables: **Showing**, **Client**, **Agent**, and **Property**. This lab needs a single table that holds all the showing details. In the **Copilot** pane, below the list of tables, select the **Table options** icon.
 
-   ![screenshot of the prompt ](../Media/img-01-21.png)
+   ![Screenshot of the generated tables and the Copilot pane with the Table options icon highlighted](../Media/L1T2S6.png)
 
-1. In the text box, in the lower part of the Copilot pane to the right of the screen, enter the following text: **add a column to track ID of the RealEstateShowing table**. Select the **Send** button.
+1. Under **Table options**, select **One table (1)**, and then select **Apply (2)**.
 
-   ![screenshot of the prompt ](../Media/img-01-22.png)
+   ![Screenshot of the Table options menu with One table and Apply highlighted](../Media/L1T2S7.png)
 
-1. Select the **ellipses (1)** icon on the **Real Estate Showing** table and choose **View data (2)**.
+1. Copilot replaces the four tables with a single **RealEstateShowing** table. Review the columns that Copilot created.
 
-   ![screenshot of the prompt ](../Media/img-01-18.png)
+   ![Screenshot of the RealEstateShowing table generated by Copilot](../Media/L1T2S8.png)
 
-1. Make sure your table looks similar to the image below.
+   > **Note:** The columns and data that Copilot generates might differ slightly from the screenshots in this lab.
 
-   ![screenshot of the prompt ](../Media/img-01-23.png)
+1. In the text box at the bottom of the **Copilot** pane, enter the following prompt, and then select the **Send** button.
 
-1. Select **Save and open app** twice to open the app.
+   ```
+   add a column to the RealEstateShowing table to track client full name
+   ```
 
-      ![screenshot of the prompt ](../Media/saveandapp.png)
+   ![Screenshot of the Copilot response and the new Client Full Name column highlighted](../Media/L1T2S9.png)
 
-      >**Note**: Your table may have several columns. Consider removing any columns that you do not plan to use:The list of columns that you need are: **ID, Address, Date, Status, Agent Name, Client Full Name, Client Email.**
+   > **Note:** Always include the table name in your prompts. If you leave it out, Copilot replies **Please reenter the query and ensure the relevant table names are also specified.**
 
-      >**Note**: When you first open the app, you might see a welcome message.just click the **Skip** button.
+1. Enter the following prompt, and then select the **Send** button.
 
-1. The app that has been built for you should show in **Edit** mode.
+   ```
+   add a column to the RealEstateShowing table to track client email
+   ```
 
-    ![screenshot of the prompt ](../Media/new-screen-1.png)
+   ![Screenshot of the Copilot response and the new Client Email column highlighted](../Media/L1T2S10.png)
 
+1. The table doesn't have a status column yet. Enter the following prompt to add a choice column with a **Completed** option, and then select the **Send** button.
 
-## Task–03: Make edits using Copilot to edit your app.
+   ```
+   add a Status choice column to the RealEstateShowing table with the options Scheduled, Completed, and Canceled
+   ```
 
-In this task, you'll use Power Apps Copilot to make edits to your app, such as modifying existing elements, adding new features, and adjusting data. Copilot will guide you through streamlining and enhancing your app’s functionality and design.
+   ![Screenshot of the Copilot response and the new Status column highlighted](../Media/L1T2S11.png)
 
-1. On the **RealEstateShowings screen (1)**, select **RecordsGallery1 (2)** to display Real Estate Showings and then select the **Title1 (3)** and then set the Text value to the following formula: **ThisItem.'Client Address' (4)**.
+1. Enter the following prompt to add sample data, and then select the **Send** button.
 
-   ![screenshot of the prompt ](../Media/img-01-24.png)
-  
-1. Select the **Subtitle1 (1)** and then set the Text value to the following formula: **ThisItem.'Client Email' (2)**.
-    
-1. Select the **Body1 (1)** and then set the Text value to the following formula: **ThisItem.'Status' (2)**
+   ```
+   add 5 more rows of data to the RealEstateShowing table
+   ```
 
-1. A single record in the gallery should now resemble the following image.
+   ![Screenshot of the Copilot response confirming that five rows were added](../Media/L1T2S12.png)
 
-   ![screenshot of the prompt ](../Media/finalpoint.png)
+1. Enter the following prompt, and then select the **Send** button.
 
-1. On the app's main screen, select the **Form control**.
+   ```
+   add a column to the RealEstateShowing table to track client address
+   ```
 
-   ![screenshot of the prompt ](../Media/formmaincontrol.png)
+   ![Screenshot of the Copilot response and the new Client Address column highlighted](../Media/L1T2S13.png)
 
-1. On the **Form1 (1)**, open the **Edit fields (2)** drop-down, expand the **ID tracking (3)** field and under **Control type (4)**, select **View text (5)**.
+1. Enter the following prompt, and then select the **Send** button.
 
-   ![screenshot of the prompt ](../Media/img-01-25.png)
+   ```
+   add a column to the RealEstateShowing table to track an ID for each showing
+   ```
 
-1. Make a new request for a property that shows in the app by selecting the **Play** button from the upper part of the screen.
+   ![Screenshot of the Copilot response and the new ID column highlighted](../Media/L1T2S14.png)
 
-    ![screenshot of the prompt ](../Media/01/copilot-play-1.png)
+   > **Note:** Copilot chooses the name of the ID column, for example **Showing Reference ID**. Note the name, because you'll use this column in Task 3.
 
-1. In the left pane, select the **+ New** button.
+1. On the **RealEstateShowing** table card, select the **More options (...) (1)** icon, and then select **View data (2)**.
 
-    ![screenshot of the prompt ](../Media/01/copilot-new-1.png)
+   ![Screenshot of the RealEstateShowing table menu with View data highlighted](../Media/L1T2S15.png)
 
-1. Though you could modify the form to automatically fill in the fields for you, for this lab, you'll complete this step manually to observe how the app works.
+1. Review the sample rows in the data grid at the bottom of the page. You can scroll to the right to see every column. From here, you can also rename, delete, update, and add columns.
 
-    ![screenshot of the prompt ](../Media/ocean-hill.png)
+   ![Screenshot of the RealEstateShowing data grid with sample rows](../Media/L1T2S16.png)
 
-1. Fill in the fields with the following information:
+1. On the toolbar, select **Save and open app**.
 
-   - Agent Email - < Your name >
+   ![Screenshot of the toolbar with Save and open app highlighted](../Media/L1T2S17-1.png)
 
-   - Client Full Name - < Your name >
+1. In the **Done working?** dialog, select **Save and open app**.
 
-   - Client Email - < Your email >
+   ![Screenshot of the Done working dialog with Save and open app highlighted](../Media/L1T2S17-2.png)
 
-   - Showing Date - < Any future date >
+   > **Note:** Power Apps creates the table in Dataverse and builds the app. This can take a minute.
 
-   - Time - < Any future time >
+1. The app opens in Power Apps Studio in **Editing** mode.
 
-   - Is Confirmed - < True >
+   ![Screenshot of the generated app open in Power Apps Studio in Editing mode](../Media/L1T2S18.png)
 
-   - Client Address - 210 Pine Road, Portland, OR 97204
+   > **Note:** If the **Welcome to Power Apps Studio** dialog appears, select **Skip**.
 
-      >**Note** : This address is one of the addresses from the Microsoft Excel file in Module 1, and it's the same file that you uploaded and turned into the Real Estate Properties table.Though you'd usually have a lookup field to the Real Estate Properties table, this lab doesn't provide one to keep it simple.
+### Task 3: Edit and test the app
 
-      ![screenshot of the prompt ](../Media/img-01-26.png)
+In this task, you'll change what the gallery and form display, test the app by adding a new showing, and then save the app.
 
-1. Select the check mark in the upper-right corner of the screen.
+1. In the **Tree view** pane, expand **RealEstateShowings screen** > **ScreenContainer1** > **BodyContainer1** > **SidebarContainer1** > **RecordsGallery1 (1)**, and then select **Title1 (2)**. Make sure that **Text** is selected in the property list, and then replace the formula in the formula bar with **ThisItem.'Client Address' (3)**.
 
-1. Select the X in the upper-right corner to close out of the app.
+   ```
+   ThisItem.'Client Address'
+   ```
 
-   ![screenshot of the prompt ](../Media/closethepane.png)
+   ![Screenshot of Power Apps Studio with RecordsGallery1, Title1, and the Client Address formula highlighted](../Media/L1T3S1.png)
 
-1. If a dialog appears saying Did you know?, select OK.
+   > **Hint:** You can also select the title of the first record in the gallery on the canvas to select **Title1**.
 
-1. The new request is added to the left of the list of requests.
+1. In **RecordsGallery1**, select **Subtitle1 (1)**, and then set its **Text** property to **ThisItem.'Client Email' (2)**.
 
-1. From the upper part of your screen, select the Save button to save the new app that you created.
+   ```
+   ThisItem.'Client Email'
+   ```
 
-      ![screenshot of the prompt ](../Media/copilot-save.png)
+   ![Screenshot of Power Apps Studio with Subtitle1 and the Client Email formula highlighted](../Media/L1T3S2.png)
 
-1. If the system prompts you, save the app name as Real Estate Showings.
+1. Select **Body1 (1)**, and then set its **Text** property to show the status **(2)**:
 
-1. Exit the app to return to the Power Apps home page.
+   - In the formula bar, delete the existing formula and type **Text(ThisItem.Stat**.
+   - From the suggestion list, select the first entry, **'Status (crxxx_status)'**.
+   - Type **)** to close the formula.
 
-## Summary 
+   ![Screenshot of Power Apps Studio with Body1 and the Text of Status formula highlighted](../Media/L1T3S3.png)
+
+   > **Note:** Every Dataverse table already has a system column named **Status**, so the column you added appears in the list with its logical name, for example **'Status (cr746_status)'**. The prefix (**cr746** in this example) is different in your environment. Because Status is a choice column, the **Text** function converts the selected option into text that the label can show.
+
+1. A record in the gallery now shows the client address, the client email, and the status.
+
+   ![Screenshot of a gallery record showing the client address, client email, and status](../Media/L1T3S4.png)
+
+1. In the **Tree view** pane, select **Form1 (1)**. You can find it under **RightContainer1** > **MainContainer1**, or type **Form1** in the **Search** box at the top of the tree. The **Properties** pane shows **Form1 (2)**.
+
+   ![Screenshot of Power Apps Studio with Form1 selected on the canvas and in the Properties pane](../Media/L1T3S5.png)
+
+   > **Note:** If the **Properties** pane isn't visible, select the **Properties** icon on the toolbar.
+
+1. In the **Properties** pane, select **Edit fields (1)**. In the **Fields** pane, expand the ID column that Copilot created, for example **Showing Reference ID (2)**. Open the **Control type (3)** drop-down, and then select **View text (4)**.
+
+   ![Screenshot of the Fields pane with Edit fields, the ID field, Control type, and View text highlighted](../Media/L1T3S6.png)
+
+   > **Note:** The ID field is now read-only in the form. Close the **Fields** pane when you're done.
+
+1. To test the app, select the **Play** icon in the upper-right part of the toolbar.
+
+   ![Screenshot of the Power Apps Studio toolbar with the Play icon highlighted](../Media/L1T3S7.png)
+
+1. In the app preview, select **+ New** above the list of showings.
+
+   ![Screenshot of the app preview with the New button highlighted](../Media/L1T3S8.png)
+
+1. Fill in the form with the following information. Though you could change the form to fill in some fields automatically, in this lab you'll enter them manually to observe how the app works.
+
+   - **Agent Email:** agent11@example.com
+   - **Client Address:** 210 Pine Road, Portland, OR 97204
+   - **Client Email:** alex.morgan@example.com
+   - **Client Full Name:** Alex Morgan
+   - **Is Confirmed:** True
+   - **Price:** 525000
+   - **Property Address:** 1450 Lakeview Drive, Portland, OR 97205
+   - **Showing Date:** Any future date and time
+   - **Showing Name:** Show K
+   - **Status:** Scheduled
+
+     ![Screenshot of the new showing form with the sample values entered](../Media/L1T3S9.png)
+
+   > **Note:** The ID field is read-only, so you don't enter a value for it.
+
+1. Select the **check mark** in the upper-right corner of the form to save the record.
+
+   ![Screenshot of the new showing form with the check mark highlighted](../Media/L1T3S10.png)
+
+1. The new showing appears in the list of showings and shows the client address, the client email, and the **Scheduled** status.
+
+   ![Screenshot of the app preview with the new showing highlighted in the list](../Media/L1T3S11.png)
+
+1. Select the **X** in the upper-right corner to close the app preview.
+
+   ![Screenshot of the app preview with the close button highlighted](../Media/L1T3S12.png)
+
+1. If the **Did you know?** dialog appears, select **Ok**.
+
+   ![Screenshot of the Did you know dialog with Ok highlighted](../Media/L1T3S13.png)
+
+1. On the toolbar, select the **Save** icon to save the app.
+
+   ![Screenshot of the Power Apps Studio toolbar with the Save icon highlighted](../Media/L1T3S14.png)
+
+1. In the **Save as** dialog, enter **Real Estate Showings (1)** as the name, and then select **Save (2)**.
+
+   ![Screenshot of the Save as dialog with the app name and Save highlighted](../Media/L1T3S15.png)
+
+1. When the app is saved, select **Back (1)** in the upper-left corner, and then in the **Leave the app?** dialog, select **Leave (2)**.
+
+   ![Screenshot of Power Apps Studio with Back and the Leave button highlighted](../Media/L1T3S16.png)
+
+1. If the **Start with data** page opens, select **Cancel**. On the **Apps** page, confirm that **Real Estate Showings** appears under **My apps**.
+
+   ![Screenshot of the Apps page with the Real Estate Showings app highlighted](../Media/L1T3S17.png)
+
+## Summary
 
 In this lab, you have accomplished the following:
 
-- You have set up and configured a new Power Platform environment to support app development.
-- You have used Copilot to quickly build a canvas app and add data.
-- You have refined and modified the app’s design and functionality with Copilot’s assistance.
+- Created a Power Platform environment with a Dataverse data store to support app development.
+- Used Copilot to generate a Dataverse table, refine its columns and data with natural language prompts, and build a canvas app.
+- Changed what the app's gallery and form display, tested the app by adding a record, and saved the app.
 
-### Congratulations! you have successfully completed this lab, please click on **Next** to continue with the next lab.
-
+### Congratulations! You have successfully completed this lab. Click **Next** to continue to the next lab.

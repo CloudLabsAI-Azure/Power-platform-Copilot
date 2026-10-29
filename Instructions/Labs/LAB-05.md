@@ -2,102 +2,145 @@
 
 ## Lab scenario
 
-In this exercise, you will share a cloud flow with others using Microsoft Power Automate. Start by accessing the cloud flow you wish to share in the Power Automate portal. Use the sharing options to grant access to specific users or groups, setting their permissions appropriately. This process will allow collaborators to view, edit, or manage the flow as needed, enabling effective teamwork and workflow management. This lab will demonstrate how to manage and share cloud flows to enhance collaboration and productivity.
+In this exercise, you'll create a cloud flow inside a solution and then share it in the two ways Power Automate offers. The flow flags every new email that arrives in your Inbox, so that showing requests stand out. You'll test the flow, add a co-owner who gets full control of the flow, and send a copy that other people can use to create their own instance of the flow. This lab shows how to manage and share cloud flows to support teamwork.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 
-- Task 01: Create A cloud Flow
-- Task 02: Add an owner to a cloud flow
-- Task 03: Send a copy of a cloud flow
+- Task 1: Create and test a cloud flow
+- Task 2: Add an owner to a cloud flow
+- Task 3: Send a copy of a cloud flow
 
-## Task 01: Create A cloud Flow
+### Task 1: Create and test a cloud flow
 
-In this task, you'll create a cloud flow in Power Automate to automate a specific process. You'll start by defining a trigger that initiates the flow, then configure actions and conditions to perform the desired tasks. This setup will streamline workflows and improve efficiency by automating repetitive or routine tasks.
+In this task, you'll create a solution, add an automated cloud flow to it that flags new emails, and test the flow.
 
-1. Open a new tab, and sign into **Power Automate** using the following link:
+1. Open a new browser tab and navigate to Power Automate by copying and pasting the following link:
 
-     ```
-     https://make.powerautomate.com/
-     ```
+   ```
+   https://make.powerautomate.com
+   ```
 
-1. On the **Power Automate** page from the left navigation menu, select **Solutions**.
-   
-   ![screenshot of the prompt ](../Media/img-01-98.png)
+   > **Note:** If you're asked to sign in, use the following credentials. If a **Pick an account** page appears, select your lab account.
+   >
+   > - **Email/Username:** <inject key="AzureAdUserEmail" enableCopy="true"/>
+   > - **Temporary Access Pass:** <inject key="AzureAdUserPassword" enableCopy="true"/>
 
-1. On the **Solutions** page, select **+ New solution (1)** to create a new solution. Enter the required details, and then select **Create (3)**.
- 
-     - Display name: **Copilot (1)**
-     - Publisher: Select the **Default Publisher (2)**
+1. Make sure the **Copilot (1)** environment is selected in the upper-right corner. If it isn't, select **Environments** and then select **Copilot**. In the left navigation, select **Solutions (2)**.
 
-          ![screenshot of the prompt ](../Media/img-01-99.png)
-    
-1. On the **Copilot** solution select **New (1) > Automation (2) > Cloud flow (3) > Automated (4)**
+   ![Screenshot of the Power Automate Home page with the Copilot environment and Solutions highlighted](../Media/L5T1S2.png)
 
-    ![screenshot of the prompt ](../Media/05/L5T1S4-0603.png)
+   > **Hint:** If the left navigation shows only icons, select the **Navigation menu** (three lines) icon at the top to show the labels.
 
-     >**Note**: If an automated cloud flow doesn't meet your requirements, you can create any other type of flow, Power Automate opens.
+1. On the **Solutions** page, select **+ New solution**.
 
-1. Give your flow a name as **my child flow (1)**. Search for, **new email** in the Search all triggers box. Select the **When a new email arrives (V3) (2)** and select **Create (3)**.
+   ![Screenshot of the Solutions page with New solution highlighted](../Media/L5T1S3.png)
 
-     ![screenshot of the prompt ](../Media/img-01-100.png)
-    
-1. Under the **When a new email arrives (V3)** box, select **+ New step**.
+1. In the **New solution** pane, enter **Copilot** as the **Display name (1)**. The **Name** fills in automatically. In **Publisher**, select **Default Publisher for org... (2)**, and then select **Create (3)**.
 
-     ![screenshot of the prompt ](../Media/img-01-101.png)
-	
-1. Search for **Notification (1)**, and then select the **Send me a mobile notification (2)**.
+   ![Screenshot of the New solution pane with the display name, publisher and Create highlighted](../Media/L5T1S4.png)
 
-     ![screenshot of the prompt ](../Media/img-01-102.png)
+1. The **Copilot** solution opens. Select **+ New**, point to **Automation**, point to **Cloud flow**, and then select **Automated**.
 
-1. Add the Subject dynamic token to the Text field of the Send me a mobile notification card.
+   ![Screenshot of the New menu with New and Automated highlighted](../Media/L5T1S5.png)
 
-     ![screenshot of the prompt ](../Media/img-01-103.png)
+1. In the **Build an automated cloud flow** dialog, enter **my child flow** as the **Flow name (1)**. In **Choose your flow's trigger**, search for **new email**, select **When a new email arrives (V3) (2)** from **Office 365 Outlook**, and then select **Create (3)**.
 
-1. Select **Save** to save your flow.
-    
-1. Go back and select **Solutions** to see your flow in the solution.
+   ![Screenshot of the Build an automated cloud flow dialog with the flow name, the trigger and Create highlighted](../Media/L5T1S6.png)
 
-     ![screenshot of the prompt ](../Media/05/new-flow-inside-solution.png)
+1. The flow designer opens with the trigger. Select **+ New step**.
 
-## Task 02: Add an owner to a cloud flow.
+   ![Screenshot of the flow designer with New step highlighted](../Media/L5T1S7.png)
 
-In this task, you'll add an owner to a cloud flow in Power Automate. You'll access the flow's settings and use the sharing options to assign ownership to a new user or group. This process ensures that the designated owner has full control over the flow, including the ability to manage, edit, and configure it as needed.
+   > **Note:** Flows that you create from a solution open in the classic designer, which this lab uses. If the new designer opens instead, turn off the **New designer** toggle in the upper-right corner.
 
-1. On the **Microsoft Copilot Studio**, select **My flows (1)**.
-   
-1. Select the **my child flow** that you want to share and then select **Share (2)**.
+1. In the **Choose an operation** box, search for **Flag email (1)**, and then select **Flag email (V2) (2)** from **Office 365 Outlook**.
 
-     ![screenshot of the prompt ](../Media/img-01-104.png)
-    
-1. Enter the name, email address, or group name for the person or group that you want to add as an owner and click on **OK** after selecting the user. 
+   ![Screenshot of the Choose an operation box with the search box and Flag email (V2) highlighted](../Media/L5T1S8.png)
 
-     ![screenshot of the prompt ](../Media/adduser.png)
-    
-1. The user or group you've selected becomes an owner of the flow.
+   > **Note:** Earlier versions of this lab used **Send me a mobile notification**. That action no longer works because the Power Automate mobile app was retired. If the action list doesn't load, change the search text and try again.
 
-## Task 03: Send a copy of a cloud flow
+1. Select the **Message Id** box. In the dynamic content list, under **When a new email arrives (V3)**, select **Message Id**. Leave **Flag Status** set to **Flagged**.
 
-In this task, you'll send a copy of a cloud flow to another user in Power Automate. You'll navigate to the flow you wish to share, use the options to create a copy, and send it to the intended recipient. This process allows the recipient to have their own version of the flow, which they can modify or use independently.
+   ![Screenshot of the Flag email action with the Message Id box and the Message Id dynamic content highlighted](../Media/L5T1S9.png)
 
-1. On the flow details page, select **Send a copy**.
+1. The **Flag email (V2)** action should resemble the following image **(1)**. Select **Save (2)**. When the flow is saved, the message **Your flow is ready to go. We recommend you test it.** appears.
 
-     ![screenshot of the prompt ](../Media/05/L5T4S1-0603.png)
-   
-2. On the Send a copy panel, you can edit the name and description of the flow you want to share, and specify the users with whom you want to share it. The recipient will receive an email stating that you have shared a cloud flow template with them, and they can then create their own instance of that flow.
+   ![Screenshot of the completed Flag email action with the Save button highlighted](../Media/L5T1S10.png)
 
-    ![screenshot of the prompt ](../Media/05/send-a-copy-0603.png)
+1. Select the **back arrow** in the upper-left corner to return to the solution. **my child flow** is listed in the **Copilot** solution.
 
-## Summary 
+   ![Screenshot of the Copilot solution with my child flow highlighted](../Media/L5T1S11.png)
+
+1. To test the flow, open a new browser tab and navigate to Outlook by copying and pasting the following link. Select **New mail**, enter your lab email in **To**, enter **Showing request for 210 Pine Road** as the **Subject**, and then select **Send**.
+
+   ```
+   https://outlook.office.com
+   ```
+
+   ![Screenshot of a new email with Send, the To box and the subject highlighted](../Media/L5T1S12.png)
+
+   > **Note:** If a **Your privacy matters** message appears, select **Continue**.
+
+1. Wait a few minutes, and then return to the Power Automate tab. Select **My flows**, select **my child flow**, and in **28-day run history**, confirm that the run shows **Succeeded**.
+
+   ![Screenshot of the flow details page with the succeeded run highlighted](../Media/L5T1S13.png)
+
+   > **Note:** The trigger checks the mailbox every few minutes, so the run can take up to five minutes to appear. Select **All runs** to refresh the list.
+
+### Task 2: Add an owner to a cloud flow
+
+In this task, you'll add a co-owner to the flow. A co-owner has full control of the flow: they can edit it, see its run history, and add or remove other owners.
+
+1. In the left navigation, select **My flows (1)**. Point to **my child flow**, and then select the **Share (2)** icon.
+
+   ![Screenshot of the My flows page with My flows and the Share icon highlighted](../Media/L5T2S1.png)
+
+1. On the **Co-owners** page, in **Add a system user or team as an owner**, enter **odl_user**, and then select your lab account from the list.
+
+   ![Screenshot of the Co-owners page with the owner search and the suggested user highlighted](../Media/L5T2S2.png)
+
+   > **Note:** In a real project you add a colleague or a team here. Your lab tenant has no other lab users, so you add your own account as the owner record.
+
+1. The **Before you share** dialog lists the connections that co-owners can use through this flow. Review it, and then select **OK**.
+
+   ![Screenshot of the Before you share dialog with the OK button highlighted](../Media/L5T2S3.png)
+
+1. The user is added to the list of owners and becomes an owner of the flow.
+
+   ![Screenshot of the Co-owners list with the new owner highlighted](../Media/L5T2S4.png)
+
+### Task 3: Send a copy of a cloud flow
+
+In this task, you'll send a copy of the flow. Recipients get their own copy that they can change and run on their own, separate from your flow.
+
+1. Select the **back arrow** to open the flow details page, and then select **Send a copy** on the toolbar.
+
+   ![Screenshot of the flow details page with Send a copy highlighted](../Media/L5T3S1.png)
+
+   > **Note:** If the panel shows **Flow has been modified since last successful run.** and the fields are disabled, run the flow first, as in the last steps of Task 1.
+
+1. In the **Send a copy** panel, keep the **Title**, and enter **Flags each new email in the Inbox so it stands out.** as the **Description**. In **Send to**, enter **odl_user**, select your lab account, and then select **Send**.
+
+   ![Screenshot of the Send a copy panel with the description, the recipient and Send highlighted](../Media/L5T3S2.png)
+
+1. The message **Flow successfully sent as a copy. Recipients will now be able to create their own instances of this flow.** appears. Close the panel.
+
+   ![Screenshot of the Send a copy panel with the success message highlighted](../Media/L5T3S3.png)
+
+1. Switch to the Outlook tab. An email from **Microsoft Power Automate** says that the flow has been shared with you. Your flow has also flagged it, because it's a new email in your Inbox.
+
+   ![Screenshot of the Inbox with the flagged emails highlighted](../Media/L5T3S4.png)
+
+   > **Note:** The recipient can open the shared flow from this email and create their own copy of it.
+
+## Summary
 
 In this lab, you have accomplished the following:
 
-- You have created a cloud flow to automate a specific process.
-- You have added an owner to the cloud flow for full control and management.
-- You have designated a list of users as co-owners to enable collaborative management.
-- You have sent a copy of the cloud flow to another user for independent use or modification.
+- Created a solution and an automated cloud flow that flags new emails, and tested it.
+- Added an owner to the cloud flow, which gives full control of the flow.
+- Sent a copy of the cloud flow, so that recipients can create their own instance of it.
 
-### You have successfully completed the lab.
- 
-
+### Congratulations! You have successfully completed the lab.
