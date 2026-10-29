@@ -198,3 +198,17 @@ Scope: `Instructions/Labs/LAB-05.md` and its screenshots only. Tested live on th
 - All 39 Lab 2 screenshots were recaptured on a fresh CloudLabs instance, with the mouse pointer out of frame (the first set showed the cursor). Tenant names and the lab user's email domain are blurred.
 - LAB-02.md: two notes added from the rerun. Copilot can pre-fill **Scope** with **4** (clear it, then pick **Organization**), and it can pre-fill **Row ID** with a **body/PrimaryKeyValue** token (remove it before inserting the RealEstateShowing identifier).
 - Borders: every lab screenshot has the 2 px border. On dark-theme images (all of Lab 3, and L5T2S3) the gray border blended into the UI, so those now use a light gray border.
+
+## Lab 3 light-mode recapture (2026-10-29)
+
+Lab 3 was walked again end to end on a new lab instance with Copilot Studio and Chrome in the light theme, and every screenshot was recaptured without the mouse pointer.
+
+- `Instructions/Media/L3T1S1.png` to `L3T1S14.png`, `L3T2S1.png` to `L3T2S12.png`, `L3T3S1.png` to `L3T3S11.png`: replaced in place with light-theme captures, annotated, tenant names blurred, and given a visible border.
+- `Instructions/Media/L3T2S13.png`, `L3T2S14.png`: removed, because Task 2 now has 12 steps.
+- `Instructions/Labs/LAB-03.md`:
+  - Task 1 step 2: the environment switcher now lists **copilot** under **Current environment**; **All environments** is the fallback.
+  - Added a note on the light theme (Dark mode toggle in the account menu; dialogs follow the browser theme).
+  - Task 2 rewritten for the **Create a flow** path that the current Add a tool pane shows: the flow opens in Power Automate in a new tab with **When Copilot Studio calls a flow** and **Return value(s) to Power Virtual Agents**, MSN Weather connection through **Create connection > Create new**, flow renamed in the designer header, then **Save**. A note covers the **New Agent flow** variant, which appeared after a page refresh on the same instance.
+  - Task 3 step 1: refresh Copilot Studio so the new flow appears in Add a tool.
+  - Lab scenario, Task 3 intro and Summary now say "flow" or "Power Automate flow" instead of "agent flow".
+- Verified: the agent answered "The temperature for Seattle is 46." in the test pane.

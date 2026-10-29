@@ -2,15 +2,15 @@
 
 ## Lab scenario
 
-In this exercise, you'll build an agent in Microsoft Copilot Studio that tells users the current temperature for any region they ask about. You'll create an agent and a topic that asks the user for a region, build an agent flow that looks up the current weather with the MSN Weather connector, and then call that flow from the topic. Finally, you'll add a condition that suggests a cold drink when it's warm, and test the agent. This lab shows how agents in Copilot Studio can use agent flows to bring real-time data from external services into a conversation.
+In this exercise, you'll build an agent in Microsoft Copilot Studio that tells users the current temperature for any region they ask about. You'll create an agent and a topic that asks the user for a region, build a Power Automate flow that looks up the current weather with the MSN Weather connector, and then call that flow from the topic. Finally, you'll add a condition that suggests a cold drink when it's warm, and test the agent. This lab shows how agents in Copilot Studio can use Power Automate flows to bring real-time data from external services into a conversation.
 
 ## Lab objectives
 
 In this lab, you will complete the following tasks:
 
 - Task 1: Create an agent and a topic
-- Task 2: Create an agent flow
-- Task 3: Call the agent flow from the topic and test it
+- Task 2: Create a flow
+- Task 3: Call the flow from the topic and test it
 
 ### Task 1: Create an agent and a topic
 
@@ -29,7 +29,9 @@ In this task, you'll create an agent in the Copilot environment, add a topic wit
 
    > **Note:** If the **Find your environments here** tip appears, select **Got it**.
 
-1. Copilot Studio opens in the default environment. In the lower-left corner, select the environment name **(1)**, expand **All environments**, and then select **Copilot (2)**, the environment that you created in Module 1.
+   > **Note:** The screenshots in this lab use the light theme. If Copilot Studio appears dark, select **...** next to your name in the lower-left corner and turn off **Dark mode**. Dialogs follow your browser's theme, so you can also set the browser appearance to **Light**.
+
+1. In the lower-left corner, select the environment name **(1)**, and then select **copilot (2)**, the environment that you created in Module 1. If it isn't listed under **Current environment**, expand **All environments** to find it.
 
    ![Screenshot of the Switch environment menu with the environment button and the Copilot environment highlighted](../Media/L3T1S1.png)
 
@@ -105,39 +107,37 @@ In this task, you'll create an agent in the Copilot environment, add a topic wit
 
    ![Screenshot of the topic with the Save button highlighted](../Media/L3T1S14.png)
 
-### Task 2: Create an agent flow
+### Task 2: Create a flow
 
-In this task, you'll create an agent flow that takes a region from the agent, gets the current weather from MSN Weather, and returns the temperature.
+In this task, you'll create a Power Automate flow that takes a region from the agent, gets the current weather from MSN Weather, and returns the temperature.
 
-1. Below the **Question** node, select **Add node (+)**, point to **Add a tool (1)**, and then on the **Basic tools** tab, select **New Agent flow (2)**.
+1. Below the **Question** node, select **Add node (+)**, point to **Add a tool (1)**, and then on the **Basic tools** tab, select **Create a flow (2)**.
 
-   ![Screenshot of the Add a tool pane with Add a tool and New Agent flow highlighted](../Media/L3T2S1.png)
+   ![Screenshot of the Add a tool pane with Add a tool and Create a flow highlighted](../Media/L3T2S1.png)
 
-   > **Note:** The agent flow designer opens in the same browser tab.
+   > **Note:** Power Automate opens in a new browser tab with a flow template. If the list shows **New Agent flow** instead of **Create a flow**, select it. The agent flow designer opens in the same tab, its trigger is named **When an agent calls the flow** and its last action **Respond to the agent**, and you select **Save draft** and then **Publish** instead of **Save**. The rest of the steps are the same.
 
-1. The designer shows a **When an agent calls the flow** trigger and a **Respond to the agent** action. Select **When an agent calls the flow**.
+1. The designer shows a **When Copilot Studio calls a flow** trigger and a **Return value(s) to Power Virtual Agents** action. Select **When Copilot Studio calls a flow**.
 
-   ![Screenshot of the agent flow designer with the When an agent calls the flow trigger highlighted](../Media/L3T2S2.png)
+   ![Screenshot of the flow designer with the When Copilot Studio calls a flow trigger highlighted](../Media/L3T2S2.png)
 
 1. Select **Add an input**, and then select **Text**.
 
    ![Screenshot of the Choose the type of user input options with Text highlighted](../Media/L3T2S3.png)
 
-1. Replace the input name **Text** with **Region**, and leave the second box as it is. Then, select the **Insert a new action (+)** icon between the two nodes.
+1. Replace the input name **Text** with **Region (1)**, and leave the second box as it is. Then, select the **Insert a new action (+)** icon **(2)** between the two nodes, and select **Add an action**.
 
    ![Screenshot of the trigger with the Region input and the Insert a new action icon highlighted](../Media/L3T2S4.png)
-
-   > **Note:** If the **Run an agent** tip appears, close it.
 
 1. In the **Add an action** pane, search for **weather (1)**, and then under **MSN Weather**, select **Get current weather (2)**.
 
    ![Screenshot of the Add an action pane with the search box and Get current weather highlighted](../Media/L3T2S5.png)
 
-1. In the **Get current weather** action, select **Create new** to create a connection for MSN Weather.
+1. In the **Create connection** pane, select **Create new** to create a connection for MSN Weather.
 
-   ![Screenshot of the Get current weather action with Create new highlighted](../Media/L3T2S6.png)
+   ![Screenshot of the Create connection pane with Create new highlighted](../Media/L3T2S6.png)
 
-1. Select the **Location** box, and then select the **Insert data from previous step** (lightning) icon **(1)**. Under **When an agent calls the flow**, select **Region (2)**. Leave **Units** set to **Imperial**.
+1. Select the **Location** box, and then select the **Insert data from previous step** (lightning) icon **(1)**. Under **When Copilot Studio calls a flow**, select **Region (2)**. Leave **Units** set to **Imperial**.
 
    ![Screenshot of the dynamic content list with the lightning icon and the Region input highlighted](../Media/L3T2S7.png)
 
@@ -147,37 +147,27 @@ In this task, you'll create an agent flow that takes a region from the agent, ge
 
    ![Screenshot of the Get current weather action with Location set to Region and Units set to Imperial](../Media/L3T2S8.png)
 
-1. Select the **Respond to the agent** action, select **Add an output**, and then select **Number**.
+1. Select the **Return value(s) to Power Virtual Agents** action, select **Add an output**, and then select **Number**.
 
    ![Screenshot of the Choose the type of output options with Number highlighted](../Media/L3T2S9.png)
 
-1. Enter **Temperature** as the output name. Select the **Enter a value to respond with** box, type **/**, and then select **Insert dynamic content**. Search for **Temperature**, and then under **Get current weather**, select **Temperature**.
+1. Enter **Temperature (1)** as the output name. Select the **Enter a value to respond with** box, select the **Insert data from previous step** (lightning) icon, and search for **Temperature**. Under **Get current weather**, select **Temperature (2)**.
 
    ![Screenshot of the dynamic content list with Temperature under Get current weather highlighted](../Media/L3T2S10.png)
 
-1. The output should resemble the following image **(1)**. Select **Save draft (2)**.
+1. The output should resemble the following image **(1)**. Select the flow name **Power Virtual Agents Flow Template** in the upper-left corner, replace it with **Get Temperature (2)**, and press **Enter**. Then, select **Save (3)**.
 
-   ![Screenshot of the Respond to the agent action with the Temperature output and Save draft highlighted](../Media/L3T2S11.png)
+   ![Screenshot of the Return value(s) action with the Temperature output, the flow name and Save highlighted](../Media/L3T2S11.png)
 
-1. When the message **We saved your draft flow** appears, select the **Overview** tab.
+1. When the message **Your flow is ready to go. We recommend you test it.** appears, close the Power Automate tab and return to the Copilot Studio tab.
 
-   ![Screenshot of the saved flow with the Overview tab highlighted](../Media/L3T2S12.png)
+   ![Screenshot of the saved flow with the Your flow is ready to go message highlighted](../Media/L3T2S12.png)
 
-1. In the **Details** section, select **Edit**. Change **Flow name** to **Get Temperature**, and then select **Save**.
+### Task 3: Call the flow from the topic and test it
 
-   ![Screenshot of the Details pane with the flow name and Save highlighted](../Media/L3T2S13.png)
+In this task, you'll add the flow to the Check Weather topic, add a condition that changes the reply when it's warm, and test the agent.
 
-   > **Note:** The message **There's a potential problem with this flow** appears because the flow hasn't been published yet. You publish it in the next step.
-
-1. Select the **Designer** tab, and then select **Publish**. When the **Your agent flow published successfully!** dialog appears, select **Go back to agent**.
-
-   ![Screenshot of the published flow dialog with Publish and Go back to agent highlighted](../Media/L3T2S14.png)
-
-### Task 3: Call the agent flow from the topic and test it
-
-In this task, you'll add the agent flow to the Check Weather topic, add a condition that changes the reply when it's warm, and test the agent.
-
-1. **Go back to agent** opens the agent's **Tools** page. Select **+7**, select **Topics**, and then select the **Check Weather** topic.
+1. In the Copilot Studio tab, refresh the page (press **F5**) so that the new flow is listed. If the **Test your agent** pane opens, close it.
 
    > **Note:** The flow isn't added to the topic automatically, so you add it in the next step.
 
@@ -233,14 +223,14 @@ In this task, you'll add the agent flow to the Check Weather topic, add a condit
 
    > **Note:** If the agent replies **Let's get you connected first**, select **Open connection manager**, select **Connect** next to **MSN Weather**, select **Submit**, and then return to the test pane and select **Retry**.
 
-You have created an agent and a topic in Microsoft Copilot Studio that uses an agent flow to provide real-time data from an external service to the user.
+You have created an agent and a topic in Microsoft Copilot Studio that uses a Power Automate flow to provide real-time data from an external service to the user.
 
 ## Summary
 
 In this lab, you have accomplished the following:
 
 - Created a standard agent in Microsoft Copilot Studio and a topic that asks the user for a region.
-- Built and published an agent flow that gets the current temperature from MSN Weather.
-- Called the agent flow from the topic, added a condition to tailor the reply, and tested the agent.
+- Built a Power Automate flow that gets the current temperature from MSN Weather.
+- Called the flow from the topic, added a condition to tailor the reply, and tested the agent.
 
 ### Congratulations! You have successfully completed this lab. Click **Next** to continue to the next lab.
