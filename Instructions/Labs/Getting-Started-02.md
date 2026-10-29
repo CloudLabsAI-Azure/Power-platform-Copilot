@@ -44,13 +44,13 @@ Once you're ready to dive in, your virtual machine and lab guide will be right a
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
  
-   ![screenshot of the prompt ](../Media/img-01-02.png)
+   ![screenshot of the prompt ](../Media/env-1.png)
  
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the lab guide in a separate window by clicking on the **Split Window** button in the top right corner.
  
-   ![screenshot of the prompt ](../Media/img-01-03.png) 
+   ![screenshot of the prompt ](../Media/env-2.png) 
  
 ## Managing Your Virtual Machine
  
