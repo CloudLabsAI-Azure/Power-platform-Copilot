@@ -1,0 +1,24 @@
+[
+  { "ResourceType": "Microsoft.Compute/virtualMachines",
+    "Parameter": [ { "Name": "max-cpu-cores", "Value": "2" },
+                   { "Name": "max-number-of-vCPUs", "Value": "2" },
+                   { "Name": "max-number-of-instances", "Value": "1" } ] },
+  { "ResourceType": "Microsoft.Storage/storageAccounts",
+    "Parameter": [ { "Name": "max-count", "Value": "1" } ] },
+
+  { "ResourceType": "Microsoft.Documentdb/databaseAccounts",
+    "Parameter": [ { "Name": "max-RU", "Value": "0" } ] },
+  { "ResourceType": "Microsoft.Sql/servers/databases",
+    "Parameter": [ { "Name": "max-DW", "Value": "0" }, { "Name": "max-DTU", "Value": "0" },
+                   { "Name": "max-VCores", "Value": "0" } ] },
+  { "ResourceType": "Microsoft.Compute/virtualMachineScaleSets",
+    "Parameter": [ { "Name": "max-vss-cpu-cores", "Value": "0" } ] },
+  { "ResourceType": "Microsoft.Databricks/workspaces",
+    "Parameter": [ { "Name": "max-clusters", "Value": "0" } ] },
+  { "ResourceType": "microsoft.synapse/workspaces/bigdatapools",
+    "Parameter": [ { "Name": "max-node-size", "Value": "0" },
+                   { "Name": "auto-pause-status", "Value": "true" },
+                   { "Name": "max-node-count", "Value": "0" } ] },
+  { "ResourceType": "microsoft.synapse/workspaces/sqlpools",
+    "Parameter": [ { "Name": "max-DW", "Value": "0" }, { "Name": "max-sql-pools", "Value": "0" } ] }
+]

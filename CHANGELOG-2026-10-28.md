@@ -212,3 +212,9 @@ Lab 3 was walked again end to end on a new lab instance with Copilot Studio and 
   - Task 3 step 1: refresh Copilot Studio so the new flow appears in Add a tool.
   - Lab scenario, Task 3 intro and Summary now say "flow" or "Power Automate flow" instead of "agent flow".
 - Verified: the agent answered "The temperature for Seattle is 46." in the test pane.
+
+## Usage policy (2026-10-29)
+
+- `setup/policy/usagepolicy.json`: new CloudLabs usage policy. Allows the lab VM (1 instance, 2 vCPUs, sized for `Standard_D2s_v3`) and one storage account, and zeroes Cosmos DB RU, SQL DTU, vCore and DW, VM scale set cores, Databricks clusters and Synapse pools. The lab's modules create no Azure resources; the Power Platform environment is outside Azure.
+- `setup/policy/README.md`: what each limit is for, and what to change if the template's VM size differs.
+- Not done: the file must be uploaded and set as the template's Usage Policy in CloudLabs. The VM size is assumed, because the repo has no ARM template to read it from.
