@@ -190,3 +190,11 @@ Scope: `Instructions/Labs/LAB-05.md` and its screenshots only. Tested live on th
 3. **Orphan folder**: `Instructions/Media/05/` still holds 14 unreferenced images.
 4. **ValidationCoverage**: no validation steps (needs scripts, out of scope).
 5. Test artifacts left in the lab tenant: the Copilot solution, `my child flow`, and test emails in the lab mailbox.
+
+---
+
+# Lab 2 recapture (2026-10-29)
+
+- All 39 Lab 2 screenshots were recaptured on a fresh CloudLabs instance, with the mouse pointer out of frame (the first set showed the cursor). Tenant names and the lab user's email domain are blurred.
+- LAB-02.md: two notes added from the rerun. Copilot can pre-fill **Scope** with **4** (clear it, then pick **Organization**), and it can pre-fill **Row ID** with a **body/PrimaryKeyValue** token (remove it before inserting the RealEstateShowing identifier).
+- Borders: every lab screenshot has the 2 px border. On dark-theme images (all of Lab 3, and L5T2S3) the gray border blended into the UI, so those now use a light gray border.

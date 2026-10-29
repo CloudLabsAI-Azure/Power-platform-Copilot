@@ -62,7 +62,7 @@ In this task, you'll describe an approval flow to Copilot, and then complete the
 
    - **Change type:** Select **Added**.
    - **Table name:** Copilot entered **RealEstateShowing**, which Dataverse doesn't recognize. Select the **X** to clear it, enter **RealEstate** in the box, and then select **RealEstateShowings**.
-   - **Scope:** Select **Organization**.
+   - **Scope:** Copilot might enter **4**. Select the **X** to clear it, and then select **Organization**.
 
      ![Screenshot of the trigger parameters with Change type, Table name and Scope highlighted](../Media/L2T1S7.png)
 
@@ -107,7 +107,7 @@ In this task, you'll describe an approval flow to Copilot, and then complete the
 
    ![Screenshot of the canvas with the Upsert a row action and its error highlighted](../Media/L2T1S13.png)
 
-1. In **Table name**, select the **X** to clear the value, enter **RealEstate**, and then select **RealEstateShowings (1)**. Select the **Row ID (2)** box, select the lightning icon, enter **RealEstateShowing** in the search box, and then select **RealEstateShowing (3)**, the unique identifier of the row.
+1. In **Table name**, select the **X** to clear the value, enter **RealEstate**, and then select **RealEstateShowings (1)**. If **Row ID (2)** already shows a **body/PrimaryKeyValue** token, select its **X** to remove it. Select the **Row ID** box, select the lightning icon, enter **RealEstateShowing** in the search box, and then select **RealEstateShowing (3)**, the unique identifier of the row.
 
    ![Screenshot of the Upsert a row parameters with Table name, Row ID and the RealEstateShowing identifier highlighted](../Media/L2T1S14.png)
 
