@@ -58,6 +58,34 @@ Feel free to **start, stop, or restart (2)** your virtual machine as needed from
 
    ![screenshot of the prompt ](../Media/img-01-04.png) 
 
+## Lab Guide Zoom In/Zoom Out
+ 
+To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+
+![](../Media/a-1.png)
+
+## Let's Get Started with Azure Portal
+
+1. On the lab virtual machine desktop, select the **Azure Portal** icon to open and sign in to Azure.
+
+   ![](../Media/a-2.png)
+
+1. On the **Sign in** blade, you will see a login screen, in which enter the following email/username and password and then click on **Sign in**.  
+
+   * **Azure Username/Email**:  <inject key="AzureAdUserEmail"></inject> 
+
+      ![](../Media/a-3.png) 
+
+   * **Temperory Access Pass**:  <inject key="AzureAdUserPassword"></inject>
+  
+      ![](../Media/a-4.png)
+  
+1. If you see the pop-up **Stay Signed in?** click **No**.
+
+   ![](../Media/a-5.png) 
+
+1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
+
 ## Support Contact
 
 1. The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
